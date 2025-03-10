@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbc0m7qtfj0pr"]
+
+[ext_resource type="Script" path="res://button.gd" id="1_pd0oy"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Restart"
+script = ExtResource("1_pd0oy")

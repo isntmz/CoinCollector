@@ -1,0 +1,133 @@
+[gd_scene load_steps=15 format=4 uid="uid://dfmgxbwrhf18f"]
+
+[ext_resource type="PackedScene" uid="uid://dounhmnb3ioab" path="res://Scenes/Player.tscn" id="1_lm8sh"]
+[ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_wfkuj"]
+[ext_resource type="PackedScene" uid="uid://ubhveuk5232p" path="res://Scenes/Coin.tscn" id="2_la8bu"]
+[ext_resource type="Texture2D" uid="uid://bvtixk0ykdmdo" path="res://Background/1.png" id="2_y0ncf"]
+[ext_resource type="Texture2D" uid="uid://er4i70wubfbi" path="res://Background/2.png" id="3_4j7e1"]
+[ext_resource type="PackedScene" uid="uid://cbc0m7qtfj0pr" path="res://Button.tscn" id="3_bv3lr"]
+[ext_resource type="Texture2D" uid="uid://c8q58etbmyjuu" path="res://Background/3.png" id="4_vr0lv"]
+[ext_resource type="Texture2D" uid="uid://nkipxr4yo7lx" path="res://Background/4.png" id="5_82u54"]
+[ext_resource type="Texture2D" uid="uid://bsf3dn4itgxjx" path="res://Background/5.png" id="6_7wtlb"]
+[ext_resource type="Texture2D" uid="uid://cflud155eg5fy" path="res://Objects/Tiles.png" id="7_sgsww"]
+[ext_resource type="AudioStream" uid="uid://c7hcuu8yjp1kt" path="res://Audio/Music.mp3" id="8_uqten"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fbehq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13bi1"]
+texture = ExtResource("7_sgsww")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, 8, -8, 8, 0, -4, 0, -4, -1, -6, -1, -6, -2, -7, -2, -7, -3, -8, -3, -8, -5, -7, -5, -7, -6, -6, -6, -6, -7, -4, -7)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0, -8, 0, -8, 0)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -8, -8, -8, -8, 0, 4, 0, 4, -1, 6, -1, 6, -2, 7, -2, 7, -3, 8, -3, 8, -5, 7, -5, 7, -6, 6, -6, 6, -7, 4, -7)
+
+[sub_resource type="TileSet" id="TileSet_nehx8"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_13bi1")
+
+[node name="MainNode" type="Node2D"]
+script = ExtResource("1_wfkuj")
+
+[node name="NodeHandle" type="Node2D" parent="."]
+
+[node name="Entities" type="Node2D" parent="NodeHandle"]
+
+[node name="Player" parent="NodeHandle/Entities" instance=ExtResource("1_lm8sh")]
+position = Vector2(339, 629)
+
+[node name="Viewport" type="Camera2D" parent="NodeHandle/Entities/Player"]
+zoom = Vector2(2, 2)
+process_callback = 0
+limit_left = 0
+limit_top = 0
+limit_right = 1154
+limit_bottom = 648
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="Label" type="Label" parent="NodeHandle/Entities/Player/Viewport"]
+offset_left = -31.0
+offset_top = -39.0
+offset_right = 30.0
+offset_bottom = -16.0
+text = "Score: 0"
+
+[node name="Button" parent="NodeHandle/Entities/Player/Viewport" instance=ExtResource("3_bv3lr")]
+visible = false
+anchors_preset = -1
+anchor_left = -0.25
+anchor_top = 6.9
+anchor_right = -0.25
+anchor_bottom = 6.9
+offset_left = -34.0
+offset_top = -70.0
+offset_right = 31.0
+offset_bottom = -39.0
+grow_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Coin" parent="NodeHandle/Entities" instance=ExtResource("2_la8bu")]
+position = Vector2(180, 622)
+
+[node name="Background" type="Node2D" parent="NodeHandle"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="NodeHandle/Background"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="NodeHandle/Background/ParallaxBackground"]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="NodeHandle/Background/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_y0ncf")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="NodeHandle/Background/ParallaxBackground"]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+motion_scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="NodeHandle/Background/ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("3_4j7e1")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="NodeHandle/Background/ParallaxBackground"]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="NodeHandle/Background/ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("4_vr0lv")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="NodeHandle/Background/ParallaxBackground"]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="NodeHandle/Background/ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("5_82u54")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="NodeHandle/Background/ParallaxBackground"]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="NodeHandle/Background/ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("6_7wtlb")
+
+[node name="World" type="Node2D" parent="NodeHandle"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NodeHandle/World"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NodeHandle/World/StaticBody2D"]
+position = Vector2(-1, 648)
+shape = SubResource("WorldBoundaryShape2D_fbehq")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="NodeHandle/World"]
+tile_map_data = PackedByteArray("AAAOACUAAQAAAAAAAAAPACUAAQABAAAAAAAQACUAAQABAAAAAAARACUAAQACAAAAAAAgACIAAQACAAAAAAAfACIAAQABAAAAAAAeACIAAQABAAAAAAAdACIAAQAAAAAAAAAYACYAAQABAAAAAAAZACYAAQABAAAAAAAaACYAAQACAAAAAAAXACYAAQAAAAAAAAASAB4AAQAAAAAAAAATAB4AAQABAAAAAAAUAB4AAQABAAAAAAAVAB4AAQABAAAAAAAWAB4AAQACAAAAAAANACAAAQACAAAAAAAMACAAAQABAAAAAAALACAAAQABAAAAAAAKACAAAQABAAAAAAAJACAAAQABAAAAAAAIACAAAQAAAAAAAAAkABwAAQAAAAAAAAAlABwAAQABAAAAAAAmABwAAQABAAAAAAAnABwAAQABAAAAAAAoABwAAQABAAAAAAApABwAAQACAAAAAAAsACQAAQACAAAAAAArACQAAQABAAAAAAAqACQAAQABAAAAAAApACQAAQABAAAAAAAoACQAAQAAAAAAAAAyACEAAQAAAAAAAAAzACEAAQABAAAAAAA0ACEAAQABAAAAAAA1ACEAAQABAAAAAAA2ACEAAQACAAAAAAAsAB4AAQAAAAAAAAAtAB4AAQACAAAAAAA8ACUAAQABAAAAAAA9ACUAAQABAAAAAAA+ACUAAQACAAAAAAA7ACUAAQAAAAAAAAAxABkAAQAAAAAAAAAyABkAAQABAAAAAAAzABkAAQABAAAAAAA0ABkAAQACAAAAAAA/ABwAAQACAAAAAAA+ABwAAQABAAAAAAA9ABwAAQABAAAAAAA8ABwAAQABAAAAAAA7ABwAAQABAAAAAAA6ABwAAQAAAAAAAAA4ABMAAQAAAAAAAAA5ABMAAQABAAAAAAA6ABMAAQABAAAAAAA7ABMAAQACAAAAAAAuABQAAQACAAAAAAAtABQAAQABAAAAAAAsABQAAQABAAAAAAArABQAAQABAAAAAAAqABQAAQAAAAAAAAAgABgAAQACAAAAAAAfABgAAQABAAAAAAAeABgAAQABAAAAAAAdABgAAQABAAAAAAAcABgAAQAAAAAAAAAUABMAAQAAAAAAAAAWABMAAQABAAAAAAAXABMAAQABAAAAAAAVABMAAQABAAAAAAAYABMAAQACAAAAAAAOABkAAQACAAAAAAANABkAAQABAAAAAAAMABkAAQABAAAAAAALABkAAQABAAAAAAAKABkAAQAAAAAAAAACABYAAQAAAAAAAAADABYAAQABAAAAAAAEABYAAQACAAAAAAAKABEAAQACAAAAAAAJABEAAQABAAAAAAAIABEAAQAAAAAAAAAFAAwAAQAAAAAAAAAGAAwAAQACAAAAAAARAA0AAQACAAAAAAAQAA0AAQAAAAAAAAAbAA8AAQAAAAAAAAAcAA8AAQACAAAAAAAkAA0AAQACAAAAAAAjAA0AAQAAAAAAAAAxABAAAQAAAAAAAAAyABAAAQACAAAAAAAlABMAAQACAAAAAAAjABMAAQAAAAAAAAAkABMAAQABAAAAAABBAA8AAQABAAAAAABCAA8AAQACAAAAAABAAA8AAQAAAAAAAAA5AAsAAQAAAAAAAAA6AAsAAQABAAAAAAA7AAsAAQACAAAAAAAtAAsAAQACAAAAAAAsAAsAAQAAAAAAAAAxAAYAAQAAAAAAAAAyAAYAAQACAAAAAAAoAAYAAQACAAAAAAAnAAYAAQAAAAAAAAAXAAgAAQAAAAAAAAAYAAgAAQACAAAAAAAfAAUAAQACAAAAAAAeAAUAAQAAAAAAAAALAAYAAQAAAAAAAAAMAAYAAQACAAAAAAACAAUAAQAAAAAAAAADAAUAAQACAAAAAAA+AAcAAQAAAAAAAAA/AAcAAQACAAAAAABEAAMAAQACAAAAAABDAAMAAQAAAAAAAAA3AAMAAQAAAAAAAAA4AAMAAQACAAAAAABEABcAAQACAAAAAABDABcAAQABAAAAAABCABcAAQABAAAAAABBABcAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_nehx8")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="NodeHandle/World"]
+stream = ExtResource("8_uqten")
+autoplay = true
+
+[connection signal="pressed" from="NodeHandle/Entities/Player/Viewport/Button" to="." method="_on_button_pressed"]
